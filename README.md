@@ -52,3 +52,7 @@ npm run build
 ## 📄 开源协议
 
 本项目采用 MIT 协议。
+
+## 🔗 友情链接
+
+- [LINUX DO - 保持活跃](https://linux.do/)
