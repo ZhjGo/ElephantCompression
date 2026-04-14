@@ -1,43 +1,54 @@
-# 小象压图
+# 🐘 小象压图 (Little Elephant Compress)
 
-基于 `Next.js App Router` + `WASM` 的在线图片压缩站点。
+> **极致轻盈，肉眼无损。** 一个完全基于浏览器本地计算的高性能图片压缩工具。
 
-## 目标
+小象压图是一款隐私友好、无需上传服务器的在线图片压缩工具。基于 `Next.js` 与 `WebAssembly (WASM)` 技术，在保障用户隐私的同时，提供媲美原生应用的压缩效率与画质。
 
-- 复刻当前 `index.html` 的高级玻璃态风格
-- 去掉 API 接入与价格模块
-- 只保留“在线图片压缩”核心能力
-- 压缩逻辑在浏览器端完成，不上传原图
-- 适合直接部署到 Cloudflare Pages
+## ✨ 功能亮点
 
-## 技术选型
+- **🔒 隐私至上**：所有压缩逻辑均在本地浏览器内完成。图片不会离开你的设备，百分百保障数据安全。
+- **⚡️ 极速体验**：利用 WebWorker 与 WASM (Rust/C++) 处理繁重的图像算法，无等待上传下载，即拖即压。
+- **🐘 极致压缩**：
+  - **PNG 专业优化**：支持基于 `oxipng` 的无损优化，以及基于 `imagequant` 的专业级量化压缩。
+  - **智能识别**：自动识别“伪装成 PNG”的 JPEG 文件，并执行针对性压缩策略。
+  - **主流格式支持**：完美支持 WebP、JPG、PNG 相互转换与优化。
+- **💎 现代设计**：采用极简玻璃拟态设计，提供如同系统原生应用般的丝滑操作体验。
 
-- `Next.js`：页面组织与静态导出
-- `@jsquash/jpeg`：MozJPEG WASM 编码
-- `@jsquash/webp`：WebP WASM 编码
-- `output: 'export'`：生成纯静态站点，部署简单
+## 🚀 快速开始
 
-## 本地开发
+可以通过以下命令在本地启动开发环境：
 
 ```bash
+# 1. 安装依赖
 npm install
+
+# 2. 启动开发服务器
 npm run dev
 ```
 
-## 构建
+打开浏览器访问 `http://localhost:3000` 即可开始使用。
+
+## 🛠️ 技术栈
+
+- **框架**: [Next.js (App Router)](https://nextjs.org/)
+- **逻辑层**: [WebAssembly (WASM)](https://webassembly.org/)
+- **压缩引擎**: 
+  - [oxipng](https://github.com/shimataro/oxipng) (WASM)
+  - [MozJPEG](https://github.com/mozilla/mozjpeg) (WASM)
+  - [WebP](https://developers.google.com/speed/webp) (WASM)
+- **UI 风格**: Vanilla CSS (Modern CSS Properties)
+
+## 📦 构建与部署
+
+本项目支持全静态导出，非常适合部署在 Cloudflare Pages, Vercel 或 Nginx。
 
 ```bash
+# 构建生产包
 npm run build
 ```
 
-构建完成后输出目录为 `out`。
+构建完成后，静态文件将输出至 `out` 目录。
 
-## Cloudflare Pages 部署
+## 📄 开源协议
 
-根据 Cloudflare Pages 的静态 Next.js 指南，这个项目可以按静态导出站点部署：
-
-- Framework preset: `Next.js (Static HTML Export)`
-- Build command: `npm run build`
-- Build output directory: `out`
-
-如果你后续需要接入上传、鉴权、任务队列或图片存储，再切到 Cloudflare Workers + OpenNext 会更合适；当前这个站点不需要。
+本项目采用 MIT 协议。
